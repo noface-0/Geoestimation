@@ -1,4 +1,3 @@
-
 # Geospatial Area & Perimeter Estimation
 
 ## Introduction
@@ -7,7 +6,10 @@ This project aims to extract building footprints from high-resolution RGB-PanSha
 
 The **Ground Sampling Distance (GSD)**, which represents the real-world distance covered by a single pixel, is critical for accurate area and perimeter estimation. Given that each image tile covers **200m x 200m** with a resolution of **650x650 pixels**, we calculate:
 
-\[ GSD = \frac{200}{650} \approx 0.31m \]
+```math
+\ GSD = \frac{200}{640} \approx 0.31m
+```
+
 
 ## Approach
 
