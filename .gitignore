@@ -1,2 +1,3 @@
 # ignore all folders in datasets
 dataset/*
+*.h5
