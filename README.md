@@ -150,6 +150,22 @@ For each test image, the output includes:
 - **Binary mask of detected buildings**
 - **Overlaid visualization with labeled areas and perimeters**
 
+## Notes on various approaches:
+
+- Resnext50 + Unet with 1 training epoch and no data augementation: 
+    - Results: accuracy: 0.9273 - loss: 0.1911 - val_accuracy: 0.9337 - val_loss: 0.1640
+    - Image: ![image](imgs/aptinf1.png)
+        -  The results from the run were okay for some categories like smaller suburban houses, but the model failed to detect larger buildings like apartments and commercial buildings. The model also failed to detect buildings with complex shapes.
+- Resnext50 + Unet with 3 training epoch and data augementation: 
+    - Results: 
+        - accuracy: 0.8818 - loss: 0.2842 - val_accuracy: 0.9179 - val_loss: 0.2312
+        - accuracy: 0.9229 - loss: 0.1934 - val_accuracy: 0.9051 - val_loss: 0.2483
+        - accuracy: 0.9351 - loss: 0.1665 - val_accuracy: 0.9094 - val_loss: 0.3201
+    - Image: ![image](imgs/aptinf2.png)
+        - The results from the run better and worse in various ways. There were less false positives as seen in the image above but the model still failed to detect buildings with apartment complexes and commercial buildings. The model also failed to detect buildings with complex shapes.
+- EfficientNetB7 + Unet with 3 training epoch and data augementation: 
+
+
 ## References
 
 - Van Etten, A., Lindenbaum, D., & Bacastow, T.M. (2018). *SpaceNet: A Remote Sensing Dataset and Challenge Series*. ArXiv, abs/1807.01232.
