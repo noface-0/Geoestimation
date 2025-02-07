@@ -163,7 +163,11 @@ For each test image, the output includes:
         - accuracy: 0.9351 - loss: 0.1665 - val_accuracy: 0.9094 - val_loss: 0.3201
     - Image: ![image](imgs/aptinf2.png)
         - The results from the run better and worse in various ways. There were less false positives as seen in the image above but the model still failed to detect buildings with apartment complexes and commercial buildings. The model also failed to detect buildings with complex shapes.
-- EfficientNetB7 + Unet with 1 training epoch and data augementation: 
+- EfficientNetB7 + Unet with 1 training epoch and data augementation:
+    - Results: 
+        - accuracy: 0.8992 - loss: 0.2431 - val_accuracy: 0.9197 - val_loss: 0.2512
+    - Image: ![image](imgs/aptinf3.png)
+        - The results from the run were better than the previous runs. The model was able to detect more buildings than the previous runs but still failed at the edges of buildings. Its also evident that the model fails on building whose roofs have high contrast where one side of the roof is much brighter that the other side. 
 
 
 ## References
