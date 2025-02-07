@@ -163,7 +163,7 @@ For each test image, the output includes:
         - accuracy: 0.9351 - loss: 0.1665 - val_accuracy: 0.9094 - val_loss: 0.3201
     - Image: ![image](imgs/aptinf2.png)
         - The results from the run better and worse in various ways. There were less false positives as seen in the image above but the model still failed to detect buildings with apartment complexes and commercial buildings. The model also failed to detect buildings with complex shapes.
-- EfficientNetB7 + Unet with 2 training epoch and data augementation: 
+- EfficientNetB7 + Unet with 1 training epoch and data augementation: 
 
 
 ## References
