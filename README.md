@@ -181,10 +181,10 @@ For each test image, the output includes:
         - Epoch 2/5 f1-score: 0.8474 - iou_score: 0.7385 - loss: 0.2375 - val_f1-score: 0.7812 - val_iou_score: 0.6676 - val_loss: 0.3066
         - Epoch 3/5 f1-score: 0.8564 - iou_score: 0.7527 - loss: 0.2212 - val_f1-score: 0.7990 - val_iou_score: 0.6929 - val_loss: 0.2855
         - Epoch 4/5 f1-score: 0.8735 - iou_score: 0.7786 - loss: 0.1943 - val_f1-score: 0.7341 - val_iou_score: 0.6288 - val_loss: 0.3671
-        
+
   <img src="imgs/aptinf4.png" alt="image" width="400" height="400">
 
-  - The results from this run was better for suburban homes but still failed on apartment buildings and commercial buildings. Its possible that the model doesn't have enough data to learn the features of these buildings.
+  - The results from this run were better for suburban homes but still failed on apartment buildings and commercial buildings. Its possible that the model doesn't have enough data to learn the features of these buildings. Looking at the images from the training performance it looks like the model startted to overrfit. We might be able to get better performance using the mulitspectural data provided in the dataset. Given that this models performance is close to spacenetv2 winner score of 0.885 implementing the aforementioned changes might get us to the winning score.
 
 ## References
 
