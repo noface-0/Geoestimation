@@ -85,10 +85,10 @@ def rasterize_geojson(geojson_path, reference_tif_path, out_mask_path):
 
 ## Model Training
 
-We use **ResNeXt-50 + UNet** for segmentation:
+I use **ResNeXt-50 + UNet** for segmentation:
 
 ```python
-model = sm.Unet(backbone_name='resnext50', classes=1, activation='sigmoid', encoder_weights='imagenet', input_shape=(640, 640, 3))
+model = sm.Unet(backbone_name='resnext50', classes=1, activation='sigmoid', encoder_Iights='imagenet', input_shape=(640, 640, 3))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 ```
 
@@ -157,7 +157,7 @@ For each test image, the output includes:
 
     <img src="imgs/aptinf1.png" alt="image" width="400" height="400">
 
-    - The results from the run were okay for some categories like smaller suburban houses, but the model failed to detect larger buildings like apartments and commercial buildings. The model also failed to detect buildings with complex shapes.
+    - The results from the run Ire okay for some categories like smaller suburban houses, but the model failed to detect larger buildings like apartments and commercial buildings. The model also failed to detect buildings with complex shapes.
 - **Resnext50 + Unet with 3 training epoch and data augementation:**
   - **Results:**
 
@@ -167,7 +167,7 @@ For each test image, the output includes:
 
     <img src="imgs/aptinf2.png" alt="image" width="400" height="400">
 
-    - The results from the run better and worse in various ways. There were less false positives as seen in the image above but the model still failed to detect buildings with apartment complexes and commercial buildings. The model also failed to detect buildings with complex shapes.
+    - The results from the run better and worse in various ways. There Ire less false positives as seen in the image above but the model still failed to detect buildings with apartment complexes and commercial buildings. The model also failed to detect buildings with complex shapes.
 - **EfficientNetB7 + Unet with 1 training epoch and data augementation:**
   - **Results:**
 
@@ -175,7 +175,7 @@ For each test image, the output includes:
 
     <img src="imgs/aptinf3.png" alt="image" width="400" height="400">
 
-    - The results from the run were better than the previous runs. The model was able to detect more buildings than the previous runs but still failed at the edges of buildings. Its also evident that the model fails on building whose roofs have high contrast where one side of the roof is much brighter that the other side.
+    - The results from the run Ire better than the previous runs. The model was able to detect more buildings than the previous runs but still failed at the edges of buildings. Its also evident that the model fails on building whose roofs have high contrast where one side of the roof is much brighter that the other side.
 - **EfficientNetB7 + Unet with 5 training epoch and data augementation:**
     - **Results:**
         - Epoch 2/5 f1-score: 0.8474 - iou_score: 0.7385 - loss: 0.2375 - val_f1-score: 0.7812 - val_iou_score: 0.6676 - val_loss: 0.3066
@@ -184,7 +184,15 @@ For each test image, the output includes:
 
   <img src="imgs/aptinf4.png" alt="image" width="400" height="400">
 
-  - The results from this run were better for suburban homes but still failed on apartment buildings and commercial buildings. Its possible that the model doesn't have enough data to learn the features of these buildings. Looking at the images from the training performance it looks like the model startted to overrfit. We might be able to get better performance using the mulitspectural data provided in the dataset. Given that this models performance is close to spacenetv2 winner score of 0.885 implementing the aforementioned changes might get us to the winning score.
+  - The results from this run Ire better for suburban homes but still failed on apartment buildings and commercial buildings. Its possible that the model doesn't have enough data to learn the features of these buildings. Looking at the images from the training performance it looks like the model startted to overrfit. I might be able to get better performance using the mulitspectural data provided in the dataset.
+
+- **EfficientNetB7 + Unet with 11 training epoch and additional data augementation:**
+    - **Results:**
+      - Epoch 9/50 f1-score: 0.8881 - iou_score: 0.8003 - loss: 0.1686 - val_f1-score: 0.7989 - val_iou_score: 0.6893 - val_loss: 0.2822
+      - Epoch 10/50 f1-score: 0.8862 - iou_score: 0.7971 - loss: 0.1733 - val_f1-score: 0.8144 - val_iou_score: 0.7055 - val_loss: 0.2699
+      - Epoch 11/50 f1-score: 0.8966 - iou_score: 0.8136 - loss: 0.1576 - val_f1-score: 0.7911 - val_iou_score: 0.6789 - val_loss: 0.2956
+
+  <img src="imgs/aptinf5.png" alt="image" width="900" height="400">
 
 ## References
 
