@@ -20,7 +20,7 @@ The methodology for building footprint extraction and measurement follows these 
 2. **Convert GeoJSON to Raster Masks**
    - Rasterize building footprints using the image's coordinate reference system (CRS).
 3. **Train Deep Learning Model**
-   - Use **ResNeXt + UNet** for segmentation to extract buildings from images.
+   - Use EfficientNetB7 + UNet for segmentation to extract buildings from images.
 4. **Predict & Postprocess Masks**
    - Apply trained model to generate binary masks.
    - Compute **area (m²) and perimeter (m)** for each detected building.
@@ -85,11 +85,11 @@ def rasterize_geojson(geojson_path, reference_tif_path, out_mask_path):
 
 ## Model Training
 
-We use **ResNeXt-50 + UNet** for segmentation:
+I use **EfficientNetB7 + UNet** for segmentation:
 
 ```python
-model = sm.Unet(backbone_name='resnext50', classes=1, activation='sigmoid', encoder_weights='imagenet', input_shape=(640, 640, 3))
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model = sm.Unet(backbone_name='efficientnetb7', classes=1, activation='sigmoid', encoder_Iights='imagenet', input_shape=(640, 640, 3))
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['iou_score'])
 ```
 
 Train the model:
@@ -101,7 +101,7 @@ model.fit(X_train, Y_train, epochs=10, batch_size=2, validation_split=0.1)
 Save the trained model:
 
 ```python
-model.save("outputs/unet_resnext_building_extraction.h5")
+model.save("outputs/unet_effnet_building_extraction.h5")
 ```
 
 ## Inference
@@ -109,7 +109,7 @@ model.save("outputs/unet_resnext_building_extraction.h5")
 Load and use the trained model for predictions:
 
 ```python
-model = tf.keras.models.load_model("outputs/unet_resnext_building_extraction.h5")
+model = tf.keras.models.load_model("outputs/unet_effnet_building_extraction.h5")
 preds = model.predict(X_test)
 binary_preds = (preds > 0.5).astype('uint8')
 ```
@@ -142,13 +142,6 @@ def overlay_mask_with_labels(image_path, mask_2d):
         ax.text(minc, minr-5, f"{region['label']}\n{region['area_m2']} m²\n{region['perimeter_m']} m", fontsize=8, color='white', bbox=dict(facecolor='black', alpha=0.6))
     plt.show()
 ```
-
-## Results
-
-For each test image, the output includes:
-
-- **Binary mask of detected buildings**
-- **Overlaid visualization with labeled areas and perimeters**
 
 ## References
 

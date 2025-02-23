@@ -1,3 +1,6 @@
 # ignore all folders in datasets
 dataset/*
 *.h5
+*.pth
+*.png
+.DS_Store
