@@ -3,3 +3,4 @@ dataset/*
 *.h5
 *.pth
 *.png
+.DS_Store
